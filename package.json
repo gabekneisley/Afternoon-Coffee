@@ -12,5 +12,8 @@
     "everyauth": "git://github.com/bnoguchi/everyauth.git#express3",
     "bootstrap": "git+https://github.com/twitter/bootstrap.git#v2.2.2"
   },
-  "engine": "node >= 0.8.18"
+  "engines": {
+    "node": " 0.8.x",
+    "npm": "1.1.x"
+  }
 }
