@@ -1,7 +1,11 @@
 extend layout
 block content
-  p 
-    | Vivamus hendrerit arcu sed erat molestie
-    | vehicula. Sed auctor neque eu tellus
-    | rhoncus ut eleifend 
-    | nibh porttitor. Ut in.
+  form(method='post', action='/topic')
+    fieldset
+      legend Add a topic
+      label(for='topic_title') What should we call your topic
+      input#topic_title(type='text', name='topic[title]')
+      label(for='topic_desc') A little more detail...
+      textarea#topic_desc(rows='2', name='topic[description]')
+      div
+        button.btn.btn-primary(type='submit') Suggest this topic

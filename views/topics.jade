@@ -1,0 +1,16 @@
+extend layout
+block content
+  table.table
+    thead
+      tr
+        th Topic
+        th 
+    tbody
+      - each topic in topics
+        tr
+          td 
+            strong #{topic.title}
+            br
+            | #{topic.description}
+          td Suggested by #{topic.origin}
+            | on #{topic.creationdate}
