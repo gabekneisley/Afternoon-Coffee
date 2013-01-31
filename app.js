@@ -10,7 +10,7 @@ var app = express();
   environment stuff that should be moved somewhere else soon
 */
 var port = process.env.PORT || 3000;
-var datapath = 'mongodb://localhost/norum';
+var datapath = process.env.PORT ? 'mongodb://afternooncoffee:eeffocnoon@linus.mongohq.com:10021/app11457095': 'mongodb://localhost/norum';
 
 mongoose.connect(datapath);
 
