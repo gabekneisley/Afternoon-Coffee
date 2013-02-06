@@ -44,7 +44,7 @@ app.configure(function () {
 });
 
 //set up the api
-var api = require('./controllers/api.js');
+var api = require('./routes/api.js');
 app.post('/topic', api.post);
 app.get('/topic/:title', api.show);
 app.get('/topic', api.list);
@@ -57,14 +57,3 @@ app.get('/', function(req, res) {
 
 app.listen(port);
 console.log('Listening on port ' + port);
-
-/*
-var http = require('http');
-var port = '8124';
-var root = "127.0.0.1"
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
-}).listen(port, root);
-console.log('Server running at http://' + root + ':' + port + '/');
-*/
