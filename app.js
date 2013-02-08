@@ -4,6 +4,8 @@ var path = require('path');
 var mongoose = require('mongoose');
 var less = require('less-middleware');
 
+var everyauth = require('everyauth');
+
 var app = express();
 
 /*
@@ -20,10 +22,32 @@ db.once('open', function callback() {
   console.log('DB Connected!');
 });
 
+//set up everyauth
+everyauth.foursquare
+  .appId('XOZZ5BWX0IC01QDXE15H3JBU01EVJG3QYLISQRYFZSZ0ASI0')
+  .appSecret('5FQZS1CDJFZUDGONGCC0CEOO2XIJHLEIW4AMEXQS1FGPUQRP')
+  .findOrCreateUser(function (session, accessToken, accessTokenExtra, foursquareUserMetadata) {
+    //put the find or create logic here
+  })
+  .redirectPath('/');
+  
+//configure the user in everyauth
+everyauth.everymodule.findUserById(function(userId, callback) {
+  User.findById(userId, callback);
+  // callback has a sig of: function(err, user) {...}
+});
+
+everyauth.foursquare
+  .entryPath('/auth/foursquare')
+  .callbackPath('/auth/foursquare/callback');
+
 app.configure(function () {
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.logger('dev'));
+  
+  //code for everyauth
+  app.use(everyauth.middleware());
   
   //code to properly use bootstrap
   var bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap');
